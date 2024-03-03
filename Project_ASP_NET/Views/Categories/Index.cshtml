@@ -1,0 +1,26 @@
+﻿<div class="d-flex justify-content-center">
+    <a href="/Categories/New" class="btn btn-primary">Creati o categorie</a>
+</div>
+<br />
+
+<div class="d-flex flex-wrap", style="gap:15px">
+    @foreach (var category in ViewBag.Categories)
+    {
+        <div class="card  rounded-4" style="width: 20rem; ">
+            <div class="card-body">
+                <h5 class="card-title">@category.Name</h5>
+                
+                <p class="card-text" >Descriere: @category.Description</p>
+
+
+                <div class="d-flex justify-content-between", style="align-content:flex-end;">
+                    <a href="/Categories/Edit/@category.Id" class="btn btn-success">Editeaza</a>
+                    
+                    <form method="post" action="/Categories/Delete/@category.Id">    
+                        <button type="submit" class="btn btn-danger">Sterge</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>

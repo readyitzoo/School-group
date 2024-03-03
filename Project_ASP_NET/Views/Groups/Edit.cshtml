@@ -1,0 +1,76 @@
+﻿@model Project_ASP_NET.Models.Group
+
+<div class="d-flex justify-content-center">
+    @*<form method="post" action="/Groups/Edit/@ViewBag.Group.Id" class="card">
+        <div class="card-body">
+            
+            <label for="name" class="form-label">Nume</label>
+            <input type="text" class="form-control" name="Name" value="@ViewBag.Group.Name">
+            
+
+            
+            <label for="description" class="form-label">Descriere</label>
+            <textarea rows="5" cols="60" class="form-control" name="Description">@ViewBag.Group.Description</textarea>
+           
+
+            <label class="form-label">Categorie</label>
+            <select name="CategoryId" class="form-select">
+                <option selected>Alege o categorie</option>
+                @foreach (var category in ViewBag.Categories)
+                {
+                    if (category.Id == ViewBag.Category.Id)
+                    {
+                        <option selected value="@category.Id">@category.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                }
+            </select>
+
+            <br />
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-success">Editeaza grup</button>
+            </div>
+        </div>
+    </form>*@
+
+    @using (Html.BeginForm(actionName: "Edit", controllerName: "Groups", method: FormMethod.Post,routeValues:new { id = Model.Id }))
+    {
+        <div class="card-body", style="width:900px;">
+
+        
+
+            @Html.Label("Name", "Nume Articol")
+            <br />
+            @Html.TextBox("Name", null, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+            <br />
+
+            <br />
+
+            @Html.Label("Description", "Descriere Grup")
+            <br />
+            @Html.TextArea("Description", null, new { @class = "form-control" })
+
+            @Html.ValidationMessage("Content", null, new { @class = "text-danger" })
+            <br />
+
+            <br />
+
+            <label>Selectati categoria</label>
+            @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categ, "Value", "Text"),"Selectati categoria", new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(m => m.CategoryId, null, new { @class = "text-danger" })
+            <br />
+
+            <br />
+
+            <button class="btn btn-success" type="submit">Editeaza grup</button>
+
+        </div>
+
+    }
+</div>

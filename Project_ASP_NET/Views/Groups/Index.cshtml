@@ -1,0 +1,35 @@
+﻿<div class="d-flex justify-content-center">
+    <a href="/Groups/New" class="btn btn-primary">Creeaza un grup</a>
+</div>
+<br />
+
+<div class="d-flex flex-wrap", style="gap:15px;">
+    @if (ViewBag.UserGroupsLength == 0)
+    {
+        <div class="w-100">Nu faceti parte din niciun grup.</div>
+        <a href="/Groups/Other">Vezi alte grupuri.</a>
+    }
+    else
+    {
+        foreach (var group in ViewBag.UserGroups)
+        {
+            <div class="card rounded-4" style="width: 30rem;">
+                <div class="card-body">
+                    <h5 class="card-title" , style="font-size: 20px;">@group.Name</h5>
+                    <p class="card-text" , style="font-size: 15px;">Descriere: @group.Description</p>
+                    <div class="card-text" , style="font-size: 12px;">Categorie: @group.Category.Name</div>
+                    <div class="card-text" , style="font-size: 12px;">Creat la: @group.DateCreated</div>
+                    <br/>
+                    <div class="d-flex justify-content-between">
+                        <a href="/Groups/Show/@group.Id" class="btn btn-primary">Vizualizati grup</a>
+
+                        <form method="post" action="/Groups/Leave/@group.Id">
+                            <button type="submit" class="btn btn-danger">Iesiti</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        
+        }
+    }
+</div>
